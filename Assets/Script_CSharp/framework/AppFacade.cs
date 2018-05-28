@@ -22,7 +22,6 @@ public class AppFacade:Facade{
   }
 
   public void StartUp(){
-
       ExecuteCommand(Notice.START_UP);
       RemoveCommand(Notice.START_UP);
   }

@@ -6,4 +6,6 @@ public class Appconst{
     public static string gameName = "LZDGame"; 
 
     public static string streammingAssets = "StreammingAssets";
+
+    public static string url = "";
 }

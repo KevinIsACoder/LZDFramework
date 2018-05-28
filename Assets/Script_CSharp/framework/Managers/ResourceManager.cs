@@ -159,4 +159,13 @@ public class ResourceManager : Mysingleton<ResourceManager> {
             yield return cor_LoadBundle(dep);
         }
     }
+
+    public void UnLoadAssetBundle(){
+
+        AssetBundle.UnloadAllAssetBundles(false);
+    }
+
+    public void UnLoadUnusedAssets(){
+        Resources.UnloadUnusedAssets();
+    }
 }
