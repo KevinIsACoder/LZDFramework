@@ -22,16 +22,22 @@ public class Test : MonoBehaviour {
         int money = 100;
 		Debug.Log(string.Format("{0:C}", money));  //货币格式化
         
-		animationCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
+		Keyframe[] keyframes = new Keyframe[]{new Keyframe(0, 0), new Keyframe(1, 5), new Keyframe(2, 0), new Keyframe(3, 5), new Keyframe(4, 0)};
+		keyframes[0].outTangent = 5.0f;
+		keyframes[1].outTangent = 0;
+		keyframes[2].outTangent = -5.0f;
+		animationCurve = new AnimationCurve(keyframes);
 		//animationCurve = AnimationCurve.EaseInOut(0, 1, 1, 10);
-		animationCurve.preWrapMode = WrapMode.PingPong;
-		animationCurve.postWrapMode = WrapMode.PingPong;
+		
+
+		animationCurve.preWrapMode = WrapMode.Loop;
+		animationCurve.postWrapMode = WrapMode.Loop;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//transform.localPosition = new Vector3(transform.position.x, animationCurve.Evaluate(Time.time), transform.position.z);
-		render.material.color = render.material.color * animationCurve.Evaluate(Time.time);
+		transform.localPosition = new Vector3(Time.time, animationCurve.Evaluate(Time.time), 0);
+		Debug.DrawLine(transform.localPosition,transform.localPosition, Color.red);
 	}
 	void TestDic(IDictionary<string, string> testIdic)
 	{
