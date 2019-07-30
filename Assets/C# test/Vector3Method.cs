@@ -6,6 +6,7 @@ using UnityEngine;
 //DESC : 这个脚本是对vecttor3的unity方法的一些学习和理解
 //vector3.Angle()是无符号的， 只能计算两个两个向量的锐角,经实验，范围只能是0到180
 //vector3.Slerp(float a, float b, float t) 球形插值，和线性插值的区别就是球形插值是将角度插值，
+//vector3.project(vector3 vector, vector3 normal) 求投影。一个向量在另一个标准向量上的投影
 public class Vector3Method : MonoBehaviour
 {
     public Transform sunRise;
@@ -19,13 +20,20 @@ public class Vector3Method : MonoBehaviour
     private bool move = true;
     
     //test Angle
-    public Transform center;
-    public Transform objA;
-    public Transform objB;
-    //test rotateTowards 转向指定物体
-    public Transform targetTransform;
-    public Transform tank;
-    public float rotateSpeed = 10.0f;
+    // public Transform center;
+    // public Transform objA;
+    // public Transform objB;
+    // //test rotateTowards 转向指定物体
+    // public Transform targetTransform;
+    // public Transform tank;
+    // public float rotateSpeed = 10.0f;
+    
+    //for vector3.project test
+    public Transform gun;
+    public Transform target;
+    public Transform bullet;
+    public bool arrive = false;
+    
     void Awake()
     {
     }
@@ -35,7 +43,7 @@ public class Vector3Method : MonoBehaviour
         startTime = Time.time;
         //计算两者之间的距离
         distanceTarget = Vector3.Distance(sunRise.position, sunSet.position);
-
+        StartCoroutine(ShootTarget());
     }
 
     // Update is called once per frame
@@ -70,11 +78,11 @@ public class Vector3Method : MonoBehaviour
         // Debug.DrawRay(tank.position, newDir, Color.red);
         // tank.rotation = Quaternion.LookRotation(newDir);
         //for slerp
-        Vector3 riseRelCenter = sunRise.position - center;
-        Vector3 setRelCenter = sunSet.position - center;
-        float fracComplete = (Time.time - startTime) / needTime;
-        sunRise.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
-        sunRise.position += center;
+        // Vector3 riseRelCenter = sunRise.position - center;
+        // Vector3 setRelCenter = sunSet.position - center;
+        // float fracComplete = (Time.time - startTime) / needTime;
+        // sunRise.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
+        // sunRise.position += center;
     }
     IEnumerator Shoot()
     {
@@ -95,5 +103,20 @@ public class Vector3Method : MonoBehaviour
             yield return null;
         } 
 
+    }
+    IEnumerator ShootTarget()
+    {
+        yield return new WaitForEndOfFrame();
+        while(arrive)
+        {
+            Vector3 dir = target.position - gun.position;
+            //Quaternion rot = Quaternion.LookRotation(dir);
+            //gun.transform.rotation = Quaternion.Slerp(gun.rotation, rot, Time.deltaTime * 20.0f);
+            gun.transform.LookAt(dir);
+            Vector3 normalLize = (target.transform.position - gun.transform.position).normalized;
+            Vector3 pos = Vector3.Project(target.transform.position - gun.transform.position, Vector3.forward.normalized);
+            bullet.GetComponent<Rigidbody>().AddForce(pos);
+            yield return null;
+        }
     }
 }

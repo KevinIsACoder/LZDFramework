@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 // AUTHOR: 梁振东
 // DATETIME: 06/17/2019 18:53:32
 // DESC: ****
@@ -32,6 +33,19 @@ public class Test : MonoBehaviour {
 
 		animationCurve.preWrapMode = WrapMode.Loop;
 		animationCurve.postWrapMode = WrapMode.Loop;
+
+		float a = 1, b = 2;
+		try
+		{
+            if(a == 1)
+			   throw(new Exception("trow exception message"));
+			b = 3;
+			Debug.LogError(b);
+		}
+		catch
+		{
+
+		}
 	}
 	
 	// Update is called once per frame
