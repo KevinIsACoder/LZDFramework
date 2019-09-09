@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 //AUTHOR : 梁振东
 //DATE : 07/09/2019 13:50:12
 //DESC : 这个脚本是对vecttor3的unity方法的一些学习和理解
@@ -44,6 +45,12 @@ public class Vector3Method : MonoBehaviour
         //计算两者之间的距离
         distanceTarget = Vector3.Distance(sunRise.position, sunSet.position);
         StartCoroutine(ShootTarget());
+
+        //test vector3.project
+        Vector3 project = Vector3.Project(target.position - gun.position, gun.right);
+        //Debug.Log("projection test is");
+        System.Console.WriteLine("projection test is {0}", project);
+        
     }
 
     // Update is called once per frame
