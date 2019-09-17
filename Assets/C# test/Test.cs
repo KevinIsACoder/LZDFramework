@@ -66,12 +66,14 @@ public class Test : MonoBehaviour {
 
 		superClass sc = bc as superClass;
 		testclass.ShowName();
+		gameObject.transform.Find("Capsule").gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.localPosition = new Vector3(Time.time, animationCurve.Evaluate(Time.time), 0);
 		Debug.DrawLine(transform.localPosition,transform.localPosition, Color.red);
+		Debug.Log(gameObject.GetComponentInChildren<BoxCollider>());
 	}
 	void TestDic(IDictionary<string, string> testIdic)
 	{
