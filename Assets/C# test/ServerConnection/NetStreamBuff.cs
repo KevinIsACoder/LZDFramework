@@ -39,7 +39,7 @@ public class NetStreamBuff : MonoBehaviour
         }
         int messagesize = BitConverter.ToInt32(buff, 0);
         //if(BitConverter.IsLittleEndian) messagesize = 
-        
+        return null;
     }
     void Remove(int messageSize)
     {
