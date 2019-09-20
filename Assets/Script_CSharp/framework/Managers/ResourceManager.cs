@@ -161,8 +161,7 @@ public class ResourceManager : Mysingleton<ResourceManager> {
     }
 
     public void UnLoadAssetBundle(){
-
-        AssetBundle.UnloadAllAssetBundles(false);
+       // AssetBundle
     }
 
     public void UnLoadUnusedAssets(){
