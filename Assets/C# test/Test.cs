@@ -15,6 +15,8 @@ public class Test : MonoBehaviour {
 		dic.Add("lzd", "lzd");
 		TestDic(Idic);
 		TestDic(dic);
+		Debug.Log(Idic);
+		Debug.Log(dic);
 	}
 	
 	// Update is called once per frame
@@ -22,7 +24,9 @@ public class Test : MonoBehaviour {
 		
 	}
 	void TestDic(IDictionary<string, string> testIdic)
-	{
-        testIdic["lzd"] = "5678";
+	{  
+		testIdic = new Dictionary<string, string>();
+        //testIdic["lzd"] = "5678"; //会改变实参
+		testIdic["LZD"] = "1314"; //	不会会改变实参
 	}
 }

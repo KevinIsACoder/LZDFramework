@@ -20,7 +20,7 @@ public class LZDScriptTemplate : UnityEditor.AssetModificationProcessor
             try
             {
                 string contents = File.ReadAllText(filepath);
-                contents = contents.Replace("#AUTHORNAME#", "梁振东").Replace("#DATE#", System.DateTime.Now.ToString())
+                contents = contents.Replace("#author#", "梁振东").Replace("#dateTime#", System.DateTime.Now.ToString())
                 .Replace("#DESC#", "****");
                 File.WriteAllText(filepath, contents);
                 AssetDatabase.Refresh();
