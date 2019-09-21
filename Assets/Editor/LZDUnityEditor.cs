@@ -17,6 +17,11 @@ namespace lzdUnityEditor
         {
             MyScriptObject.CreateScriptObject<BundleObject>("Bundle");
         }
+        [MenuItem(root_name + "ToPNG", false, 101)]
+        private static void ChangeToPNG()
+        {
+            
+        }
 
     }
 }
