@@ -8,9 +8,12 @@ using UnityEngine;
 //各种排序算法
 public class Sort : MonoBehaviour 
 {
-
+    private const string test = "lzd"; //const 修饰的变量必须初始化, const前面不要有static，常量不能改变值
+	private static readonly string test_1; //静态只读变量或者只读变量只可以初始化或在构造函数中赋值
 	// Use this for initialization
 	void Start () {
+		//test = ""; 不对
+		//test_1 = "lzd"; 不对
 		int[] args = new int[]{5, 4, 7, 2, 3};
 		// QuickSort quickSort = new QuickSort();
 		// quickSort.Sort(args, 0, args.Length - 1);
@@ -18,11 +21,36 @@ public class Sort : MonoBehaviour
 		// bubbleSort.Sort(args);
 		// SelectSort selectSort = new SelectSort();
 		// selectSort.Sort(args);
-		InsertSort insertSort = new InsertSort();
-		insertSort.Sort(args);
-		for(int i = 0; i < args.Length; ++i)
+		// InsertSort insertSort = new InsertSort();
+		// insertSort.Sort(args);
+		// for(int i = 0; i < args.Length; ++i)
+		// {
+		// 	Debug.Log(args[i]);
+		// }
+		// StaticInherit.StaticTest();
+		// int b = StaticTest.b;
+		// int c = StaticTest.c;
+		// StaticInherit.Property = 10;
+
+		// Debug.Log(StaticTest.a);
+		// Debug.Log(StaticTest.Property);
+		
+		// Debug.Log(StaticInherit.a);
+		// Debug.Log(StaticInherit.Property);
+		List<StaticTest> list = new List<StaticTest>();
+		StaticTest test = new StaticTest();
+		StaticTest test_1 = new StaticTest();
+		test_1.listTest = 8;
+	    StaticTest test_2 = new StaticTest();
+		test_2.listTest = 10;
+		list.Add(test);
+		test = test_1;
+		list.Add(test);
+		test = test_2;
+		list.Add(test);
+		foreach(var item in list)
 		{
-			Debug.Log(args[i]);
+			Debug.Log(item.listTest);
 		}
 	}
 	
@@ -134,5 +162,41 @@ public class QuickSort
 			Sort(args, right + 1, _right); //递归排序右边
 		}
 	}
+}
+//测试
+public class StaticTest
+{
+	public static int a = 0;
+	public static int b = 9;
+	public static int c = 10;
+	public int listTest = 2;
+	public static int Property
+	{
+		get;
+		set;
+	}
+	public static int GetInstance()
+	{
+		if(a == 0) a = 5; 
+		return a;
+	}
+}
+public class StaticInherit : StaticTest   //静态类不能被继承，staticTest如果是静态的会出错
+{
+
+	public static void StaticTest()
+	{
+        b = 6;   //经测试， 静态字段和属性都可以被继承
+		Property = 0;
+		GetInstance(); //静态方法可以被继承
+	}
+	public void ListTest()
+	{
+		listTest = 10;
+	}
+	// public new static int GetInstance()  //可以用new隐藏继承的成员方法
+	// {
+
+	// }
 }
 
