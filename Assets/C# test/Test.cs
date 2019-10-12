@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using System.Text;
 // AUTHOR: 梁振东
 // DATETIME: 06/17/2019 18:53:32
 // DESC: ****
@@ -76,7 +76,14 @@ public class Test : MonoBehaviour
 
         superClass sc = bc as superClass;
         testclass.ShowName();
-        gameObject.transform.Find("Capsule").gameObject.SetActive(false);
+
+        Person person = new Person("lzd", 26);
+        TestPerson testPerson = new TestPerson(person);
+        Debug.Log(testPerson.person.Name);
+        testPerson.person.Name = new StringBuilder("zyn");
+        testPerson.person.age = 10;
+        Debug.Log(person.Name); // 输出”zyn“,
+        Debug.Log(person.age); // 输出为10；//引用类型参数会改变原值
     }
 
     // Update is called once per frame
@@ -84,7 +91,6 @@ public class Test : MonoBehaviour
     {
         transform.localPosition = new Vector3(Time.time, animationCurve.Evaluate(Time.time), 0);
         Debug.DrawLine(transform.localPosition, transform.localPosition, Color.red);
-        Debug.Log(gameObject.GetComponentInChildren<BoxCollider>());
     }
     void TestDic(IDictionary<string, string> testIdic)
     {
@@ -128,15 +134,26 @@ public class superClass : baseClass
     }
 };
 
-public interface IWriteSetting
+//深拷贝和浅拷贝
+public class Person
 {
-    void SetSettings();
+    public Person(string name, int age)
+    {
+        this.Name = new StringBuilder(name);
+        this.age = age;
+    }
+    public StringBuilder Name
+    {
+        get;
+        set;
+    }
+    public int age;
 }
-public interface IReadSettting
+public class TestPerson
 {
-    void GetSettings();
-}
-interface ISettingsProvider : IReadSettting, IWriteSetting
-{
-
+    public Person person;
+    public TestPerson(Person person)
+    {
+        this.person = person;
+    }
 }
