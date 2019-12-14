@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a87f89e0d116348d2b8051ce4a91ce0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 1
+  height: 1
+  waterSubdivisions: 240
+  Tension: .0149999997
+  Dampening: .0149999997
+  Spread: .0199999996
+  objectSizeDampening: .699999988
+  neighbours: 8
+  waterMaterial: {fileID: 2100000, guid: 0d0193c43f08c41ba95b44d71ba6fa4f, type: 2}
+  uvAnimationSpeed: {x: -.00999999978, y: -.00999999978}
+  waterSplash: {fileID: 0}
+  afterPeakwaterSplash: {fileID: 0}
+  heightLimitToSplashParticles: .829999983
+  splashSounds: []
+  idleFactor: .00999999978
+  idleWavesSpeed: 100
+  deepColor: {r: .0156862754, g: 0, b: .349019617, a: 1}
+  surfaceColor: {r: .827450991, g: .921568632, b: 1, a: .745098054}
+  surfaceLineWidth: .5
+  surfaceLineMaterial: {fileID: 2100000, guid: 82f1d294034304307bbf5456f1937192, type: 2}
+  surfaceLineColor: {r: 0, g: 0, b: .800000012, a: 0}
+  createCollider: 1
+  colliderZsize: 100
+  use2DPhysics: 0
+  maxWaterForceApplied: 1
+  drawDebugInfo: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
