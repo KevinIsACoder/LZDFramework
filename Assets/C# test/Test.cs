@@ -76,7 +76,10 @@ public class Test : MonoBehaviour
 
         superClass sc = bc as superClass;
         testclass.ShowName();
-        gameObject.transform.Find("Capsule").gameObject.SetActive(false);
+       // gameObject.transform.Find("Capsule").gameObject.SetActive(false);
+        DateTime dayofyear = DateTime.UtcNow;
+        Debug.Log(dayofyear.ToString());
+        Debug.Log(DateTime.Now.DayOfYear);
     }
 
     // Update is called once per frame
