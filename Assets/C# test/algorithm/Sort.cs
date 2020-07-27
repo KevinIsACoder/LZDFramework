@@ -184,7 +184,7 @@ public class QuickSort
                 args[right] = args[left];
             }
 			args[right] = temp; //基位复位
-			Sort(args, _left, left - 1);
+			Sort(args, _left, right - 1);
 			Sort(args, right + 1, _right);
         }
     }
@@ -219,10 +219,16 @@ public class StaticInherit : StaticTest   //静态类不能被继承，staticTes
     public void ListTest()
     {
         listTest = 10;
+        A a = new A();
+        a.score = 1;
     }
     // public new static int GetInstance()  //可以用new隐藏继承的成员方法
     // {
 
     // }
+}
+public struct A
+{
+    public int score;
 }
 

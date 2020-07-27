@@ -52,4 +52,6 @@ public class DataStructure : MonoBehaviour
 public class TestDic
 {
 	public int test = 0;
+	public LinkedList<string> linkList = new LinkedList<string>();
+    
 }
